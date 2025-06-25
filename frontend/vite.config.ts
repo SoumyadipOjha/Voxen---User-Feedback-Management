@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://voxen-user-feedback-management.onrender.com',
-        changeOrigin: true,
+        changeOrigin: true
       },
     },
   },
