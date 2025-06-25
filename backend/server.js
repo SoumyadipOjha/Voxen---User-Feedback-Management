@@ -17,7 +17,7 @@ app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 
 // CORS
-app.use(cors({ origin: ['http://localhost:5173', 'https://voxen-taupe.vercel.app/'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:5173', 'https://voxen-taupe.vercel.app'], credentials: true }));
 
 // Body parser
 app.use(express.json());
