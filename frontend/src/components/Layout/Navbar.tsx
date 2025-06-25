@@ -21,11 +21,11 @@ export const Navbar = () => {
           <Flex alignItems="center">
             <MessageSquare size={24} color="#d53f8c" />
             <Text fontSize="xl" fontWeight="bold" ml={2} color="brand.500">
-              Voxen
+              FeedbackHub
             </Text>
           </Flex>
 
-          <Flex gap={4}>
+          <Flex space={4}>
             <Button
               as={Link}
               to="/"

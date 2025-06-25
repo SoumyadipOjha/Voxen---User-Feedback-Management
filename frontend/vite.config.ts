@@ -8,8 +8,8 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://voxen-user-feedback-management.onrender.com',
-        changeOrigin: true
+        target: 'http://localhost:5000',
+        changeOrigin: true,
       },
     },
   },
