@@ -117,25 +117,25 @@ export const getFeedbackAnalytics = catchAsync(async (req, res) => {
     totalFeedback,
     averageRating
   ] = await Promise.all([
-    // Category k liye
+    // Category distribution
     Feedback.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
     ]),
     
-    // Status k liye
+    // Status distribution
     Feedback.aggregate([
       { $group: { _id: '$status', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
     ]),
     
-    // Rating k liye
+    // Rating distribution
     Feedback.aggregate([
       { $group: { _id: '$rating', count: { $sum: 1 } } },
       { $sort: { _id: 1 } }
     ]),
     
-    // Monthly feedback count last 6 months k liye
+    // Monthly feedback count for the last 6 months
     Feedback.aggregate([
       {
         $match: {
@@ -156,9 +156,10 @@ export const getFeedbackAnalytics = catchAsync(async (req, res) => {
       { $sort: { '_id.year': 1, '_id.month': 1 } }
     ]),
     
+    // Total feedback count
     Feedback.countDocuments(),
     
-    // Average rating count krne k liye
+    // Average rating
     Feedback.aggregate([
       { $group: { _id: null, avgRating: { $avg: '$rating' } } }
     ])

@@ -127,7 +127,7 @@ export const FeedbackForm = () => {
       [name]: name === 'rating' ? parseInt(value) : value,
     }));
 
-    // jab user typr kr rha hai, error ko clear kr do
+    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,

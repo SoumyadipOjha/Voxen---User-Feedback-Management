@@ -43,7 +43,7 @@ const feedbackSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Indexing for better performance
+// Indexes for better query performance
 feedbackSchema.index({ createdAt: -1 });
 feedbackSchema.index({ category: 1 });
 feedbackSchema.index({ status: 1 });
