@@ -27,7 +27,7 @@ app.use(limiter);
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['ttps://voxen-taupe.vercel.app'] 
+    ? ['https://voxen-taupe.vercel.app'] 
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
