@@ -39,7 +39,7 @@ export const getAllFeedback = catchAsync(async (req, res) => {
   const sort = {};
   sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
 
-  // Calculate pagination
+  //pagination calculations k liye
   const skip = (page - 1) * limit;
 
   const [feedbacks, total] = await Promise.all([
@@ -117,19 +117,19 @@ export const getFeedbackAnalytics = catchAsync(async (req, res) => {
     totalFeedback,
     averageRating
   ] = await Promise.all([
-    // Category distribution
+    //distribution of categories
     Feedback.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
     ]),
     
-    // Status distribution
+    //distribution of satus
     Feedback.aggregate([
       { $group: { _id: '$status', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
     ]),
     
-    // Rating distribution
+    //distribution of ratings
     Feedback.aggregate([
       { $group: { _id: '$rating', count: { $sum: 1 } } },
       { $sort: { _id: 1 } }
@@ -156,10 +156,9 @@ export const getFeedbackAnalytics = catchAsync(async (req, res) => {
       { $sort: { '_id.year': 1, '_id.month': 1 } }
     ]),
     
-    // Total feedback count
-    Feedback.countDocuments(),
     
-    // Average rating
+    Feedback.countDocuments(),
+
     Feedback.aggregate([
       { $group: { _id: null, avgRating: { $avg: '$rating' } } }
     ])

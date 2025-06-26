@@ -5,9 +5,11 @@ import {
   Button,
   Container,
   useColorModeValue,
+  IconButton,
+  HStack
 } from '@chakra-ui/react';
 import { Link, useLocation } from 'react-router-dom';
-import { MessageSquare, BarChart3 } from 'lucide-react';
+import { MessageSquare, BarChart3,Github,Linkedin } from 'lucide-react';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -21,11 +23,11 @@ export const Navbar = () => {
           <Flex alignItems="center">
             <MessageSquare size={24} color="#d53f8c" />
             <Text fontSize="xl" fontWeight="bold" ml={2} color="brand.500">
-              FeedbackHub
+              Voxen
             </Text>
           </Flex>
 
-          <Flex space={4}>
+          <Flex gap={4}>
             <Button
               as={Link}
               to="/"
@@ -44,6 +46,24 @@ export const Navbar = () => {
             >
               Dashboard
             </Button>
+            <HStack spacing={2}>
+              <IconButton
+                as="a"
+                href="https://github.com/SoumyadipOjha/Voxen---User-Feedback-Management"
+                aria-label="GitHub"
+                icon={<Github size={18} />}
+                size="sm"
+                variant="ghost"
+                />
+              <IconButton
+                as="a"
+                href="https://www.linkedin.com/in/soumyadip-ojha/"
+                aria-label="LinkedIn"
+                icon={<Linkedin size={18} />}
+                size="sm"
+                variant="ghost"
+                />
+            </HStack>
           </Flex>
         </Flex>
       </Container>

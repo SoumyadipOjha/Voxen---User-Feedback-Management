@@ -96,7 +96,6 @@ export const FeedbackForm = () => {
         isClosable: true,
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -127,7 +126,6 @@ export const FeedbackForm = () => {
       [name]: name === 'rating' ? parseInt(value) : value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
