@@ -16,12 +16,11 @@ import {
   IconButton,
   Tooltip,
   Box,
-  Stack,
-  useBreakpointValue
+  useBreakpointValue,
+  VStack,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Search, Star } from 'lucide-react';
-
 import { feedbackService } from '../../services/feedbackService';
 
 interface Feedback {
@@ -42,8 +41,6 @@ interface PaginationInfo {
   hasNext: boolean;
   hasPrev: boolean;
 }
-
-
 
 export const FeedbackTable = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -155,8 +152,7 @@ export const FeedbackTable = () => {
       minute: '2-digit',
     });
   };
-
-
+  
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isTablet = useBreakpointValue({ base: false, md: true });
  
@@ -300,6 +296,7 @@ export const FeedbackTable = () => {
         </Tbody>
       </Table>
     </Box>
+
       {/* Pagination */}
       <Flex mt={4} justify="space-between" align="center">
         <Text fontSize="sm" color="gray.600">
