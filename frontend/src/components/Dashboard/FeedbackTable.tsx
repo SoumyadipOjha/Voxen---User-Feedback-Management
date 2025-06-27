@@ -15,9 +15,13 @@ import {
   useToast,
   IconButton,
   Tooltip,
+  Box,
+  Stack,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Search, Star } from 'lucide-react';
+
 import { feedbackService } from '../../services/feedbackService';
 
 interface Feedback {
@@ -38,6 +42,8 @@ interface PaginationInfo {
   hasNext: boolean;
   hasPrev: boolean;
 }
+
+
 
 export const FeedbackTable = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -150,6 +156,23 @@ export const FeedbackTable = () => {
     });
   };
 
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isTablet = useBreakpointValue({ base: false, md: true });
+ 
+  const tableWidthMobile = isMobile ? '100%' : isTablet ? '90%'
+  : '80%';
+  const tableWidthTablet = isTablet ? '90%' : '80%';
+  const tableWidthDesktop = !isMobile && !isTablet ? '80%' : '100%';
+  const tableWidthTabletDesktop = isTablet ? '80%' : '100%';
+  const tableWidthMobileDesktop = isMobile ? '100%' : '80%';
+  const tableWidth = isMobile ? tableWidthMobile : isTablet ? tableWidthTablet : tableWidthDesktop;
+  const tableWidthResponsive = isMobile ? tableWidthMobileDesktop : tableWidthTabletDesktop;
+  const tableWidthFinal = isMobile ? tableWidth : isTablet ? tableWidthResponsive : tableWidthDesktop;
+  const tableWidthFinalResponsive = isMobile ? tableWidthMobile : isTablet ? tableWidthTablet : tableWidthDesktop;
+  const tableWidthFinalResponsiveDesktop = isMobile ? tableWidthMobile : isTablet ? tableWidthTablet : tableWidthDesktop;
+  
+
   return (
     <>
       {/* Filters */}
@@ -202,8 +225,8 @@ export const FeedbackTable = () => {
         </Select>
       </Flex>
 
-      {/* Table */}
-      <Table variant="simple" bg="white" borderRadius="lg" overflow="hidden">
+       <Box overflowX="auto">
+      <Table variant="simple" bg="white" borderRadius="lg">
         <Thead bg="gray.50">
           <Tr>
             <Th>User</Th>
@@ -276,7 +299,7 @@ export const FeedbackTable = () => {
           )}
         </Tbody>
       </Table>
-
+    </Box>
       {/* Pagination */}
       <Flex mt={4} justify="space-between" align="center">
         <Text fontSize="sm" color="gray.600">
