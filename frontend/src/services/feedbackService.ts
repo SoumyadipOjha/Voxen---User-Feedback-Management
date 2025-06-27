@@ -1,6 +1,4 @@
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://voxen-user-feedback-management.onrender.com/api'
-  : '/api';
+const API_BASE_URL = '/api';
 
 interface FeedbackData {
   name: string;
